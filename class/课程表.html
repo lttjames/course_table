@@ -1,0 +1,213 @@
+
+<!DOCTYPE html >
+
+<html lang="en">
+
+<head>
+  <link href="classtable.css" type="text/css" rel="stylesheet">
+
+   <meta charset="UTF-8">
+
+   <title>录课表</title>
+   <script src="jquery-3.3.1.min.js"></script>
+
+   <script>
+  
+  function checkbox() 
+  {
+    // body...
+    var $input= new Array();
+   
+    for (var i = 1; i <= 7; i++) 
+    {
+      $input[i-1]=new Array();
+      for (var j = 1; j <= 5; j++) 
+      {
+         $input[i-1][j-1] = document.getElementById(String(i*10+j)).checked;
+         
+      }
+     
+    }
+var operatorIDs=JSON.stringify($input);//将数组转为JSON字符串
+$.ajax(
+  {
+  type:'post',
+  contentType:'json',
+  url:"up.php",//后台地址
+  data: {'operatorIDs':operatorIDs },//需要向后台传输的数据
+  dataType:"json",
+  success: function (data) //如果成功返回的函数
+  {
+     alert("yes");
+     console.log(operatorIDs);
+  }
+  })
+  console.log(operatorIDs);
+  }
+
+      
+   </script>
+
+
+</head>
+
+<body class="basic">
+
+	<table width="1000" border="1" cellspacing="10" cellpadding="8">
+
+  <caption>
+
+    课程表
+
+  </caption>
+
+  <tr>
+
+    <td> </td>
+
+    <td> </td>
+
+    <td > 星期一</td>
+
+    <td> 星期二</td>
+
+    <td> 星期三</td>
+
+    <td> 星期四</td>
+
+    <td> 星期五</td>
+
+    <td> 星期六</td>
+
+    <td> 星期日</td>
+
+  </tr>
+
+  <tr>
+
+    <td rowspan="2" > 早上 </td>
+
+    <td> 第一节</td>
+
+    <td class="color"> <label><input  type="checkbox" name="check" id="11">有空</label> </td>
+
+    <td> <label><input type="checkbox" name="check" id="21">有空</label> </td>
+
+    <td> <label><input type="checkbox" name="check" id="31">有空</label> </td>
+
+    <td> <label><input type="checkbox" name="check" id="41">有空</label> </td>
+
+    <td> <label><input type="checkbox" name="check" id="51">有空</label> </td>
+
+    <td> <label><input type="checkbox" name="check" id="61">有空</label> </td>
+
+    <td> <label><input type="checkbox" name="check" id="71">有空</label> </td>
+
+  </tr>
+
+  <tr>
+
+    <td> 第二节</td>
+
+    <td> <label><input type="checkbox" name="check" id="12">有空</label> </td>
+
+    <td> <label><input type="checkbox" name="check" id="22">有空</label> </td>
+
+    <td> <label><input type="checkbox" name="check" id="32">有空</label> </td>
+
+    <td> <label><input type="checkbox" name="check" id="42">有空</label> </td>
+
+    <td> <label><input type="checkbox" name="check" id="52">有空</label> </td>
+
+    <td> <label><input type="checkbox" name="check" id="62">有空</label> </td>
+
+    <td> <label><input type="checkbox" name="check" id="72">有空</label> </td>
+
+  </tr>
+
+  <tr>
+
+    <td rowspan="2" > 下午 </td>
+
+    <td> 第三节</td>
+
+    <td> <label><input type="checkbox" name="check" id="13">有空</label> </td>
+
+    <td> <label><input type="checkbox" name="check" id="23">有空</label> </td>
+
+    <td> <label><input type="checkbox" name="check" id="33">有空</label> </td>
+
+    <td> <label><input type="checkbox" name="check" id="43">有空</label> </td>
+
+    <td> <label><input type="checkbox" name="check" id="53">有空</label> </td>
+
+    <td> <label><input type="checkbox" name="check" id="63">有空</label> </td>
+
+    <td> <label><input type="checkbox" name="check" id="73">有空</label> </td>
+
+  </tr>
+
+  <tr>
+
+    <td> 第四节</td>
+
+    <td> <label><input type="checkbox" name="check" id="14">有空</label> </td>
+
+    <td> <label><input type="checkbox" name="check" id="24">有空</label> </td>
+
+    <td> <label><input type="checkbox" name="check" id="34">有空</label> </td>
+
+    <td> <label><input type="checkbox" name="check" id="44">有空</label> </td>
+
+    <td> <label><input type="checkbox" name="check" id="54">有空</label> </td>
+
+    <td> <label><input type="checkbox" name="check" id="64">有空</label> </td>
+
+    <td> <label><input type="checkbox" name="check" id="74">有空</label> </td>
+
+  </tr>
+
+  <tr>
+
+    <td> 晚上 </td>
+
+    <td> 第五节</td>
+
+    <td> <label><input type="checkbox" name="check" id="15">有空</label> </td>
+
+    <td> <label><input type="checkbox" name="check" id="25">有空</label> </td>
+
+    <td> <label><input type="checkbox" name="check" id="35">有空</label> </td>
+
+    <td> <label><input type="checkbox" name="check" id="45">有空</label> </td>
+
+    <td> <label><input type="checkbox" name="check" id="55">有空</label> </td>
+
+    <td> <label><input type="checkbox" name="check" id="65">有空</label> </td>
+
+    <td> <label><input type="checkbox" name="check" id="75">有空</label> </td>
+
+  </tr>
+
+</table>
+
+<br>
+
+<br>
+
+<p>姓名</p><input type="text" name="text" id="name">
+
+<br>
+
+<p>班级</p><input type="text" name="text" id="class">
+
+<br>
+
+<br>
+
+ 
+ <button type="button" onclick="checkbox()">提交</button>
+
+</body>
+
+</html>

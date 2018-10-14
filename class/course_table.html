@@ -1,0 +1,102 @@
+<!DOCTYPE html >
+
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>录课表</title>
+  <link href="classtable.css" type="text/css" rel="stylesheet">
+  <style>
+    .submit {
+      display: block;
+      margin-top: 30px;
+    }
+  </style>
+
+</head>
+
+<body>
+  <form id="form">
+    <table width="1000" border="1" cellspacing="10" cellpadding="8">
+      <caption>课程表</caption>
+      <tr></tr>
+      <tr>
+        <td rowspan="2"> 早上 </td>
+      </tr>
+      <tr></tr>
+      <tr>
+        <td rowspan="2"> 下午 </td>
+      </tr>
+      <tr></tr>
+      <tr>
+        <td> 晚上 </td>
+      </tr>
+    </table>
+    <p>姓名</p>
+    <input type="text" name="name">
+    <p>班级</p>
+    <input type="text" name="class">
+    <button type="button" id="submit" class="submit">提交</button>
+  </form>
+  <script>
+
+    let week = ['', '', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六', '星期日'];
+    let weekLen = week.filter(x => x !== '').length;
+    // 时间与对应课程
+    let classData = [
+      { course: '第一节', value: '有空' },
+      { course: '第二节', value: '有空' },
+      { course: '第三节', value: '有空' },
+      { course: '第四节', value: '有空' },
+      { course: '第五节', value: '有空' },
+    ];
+
+    // 对应每个节点
+    let formTr = document.getElementById('form').querySelectorAll('tr');
+    for (let i = 0; i < formTr.length; i++) {
+      let data = '';
+      if (0 === i) {
+        for (let i = 0; i < week.length; i++) {
+          data += `<td>${week[i]}</td>`.trim();
+        }
+      } else {
+        data = `<td>${classData[i - 1].course}</td>`;
+        for (let j = 0; j < weekLen; j++) {
+          data += `
+          <td>
+            <label><input type="checkbox" name="check${j + 1}${i}">${classData[i - 1].value}</label>
+          </td>
+        `.trim();
+        }
+
+      }
+      formTr[i].innerHTML += data;
+    }
+
+    // 提交数据
+    let submit = document.getElementById('submit');
+    submit.onclick = function () {
+      // TODO: 这里弄前端验证
+
+      let form = document.getElementById('form');
+      let data = new FormData(form);
+      fetch('./up.php', {
+        body: data,
+        cache: 'no-cache',
+        credentials: 'same-origin',
+        method: 'POST'
+      })
+        .then(function (response) {
+          // 处理返回信息
+          return response.json();
+        })
+        .then(function (myJson) {
+          console.log(myJson);
+        });
+
+    }
+
+  </script>
+</body>
+
+</html>
