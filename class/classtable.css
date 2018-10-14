@@ -1,0 +1,15 @@
+p{
+    display: inline-block;
+}
+#submit{
+    display: inline-block;
+}
+#a{
+    float: right;
+    font-size: 14px;
+}
+table{
+    text-align: center;
+    margin: 0 auto;
+    height: 500px;
+}

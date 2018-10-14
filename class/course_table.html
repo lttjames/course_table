@@ -6,6 +6,7 @@
   <meta charset="UTF-8">
   <title>录课表</title>
   <link href="classtable.css" type="text/css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
   <style>
     .submit {
       display: block;
@@ -15,10 +16,17 @@
 
 </head>
 
-<body>
+<body style="background-color:rgb(221,240,237);">
   <form id="form">
-    <table width="1000" border="1" cellspacing="10" cellpadding="8">
-      <caption>课程表</caption>
+    <div id="a">
+        <p>姓名</p>
+        <input type="text" name="name">
+        <p>班级</p>
+        <input type="text" name="class">
+        <button type="button" id="submit" class="submit">提交</button>
+    </div>
+    <table width="1000" border="1" cellspacing="10" cellpadding="8" class="table-bordered table-hover">
+      <caption style="font-weight:bold;font-size:25px;">课程表</caption>
       <tr></tr>
       <tr>
         <td rowspan="2"> 早上 </td>
@@ -32,11 +40,6 @@
         <td> 晚上 </td>
       </tr>
     </table>
-    <p>姓名</p>
-    <input type="text" name="name">
-    <p>班级</p>
-    <input type="text" name="class">
-    <button type="button" id="submit" class="submit">提交</button>
   </form>
   <script>
 
